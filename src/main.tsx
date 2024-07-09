@@ -4,6 +4,7 @@ import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import ErrorBoundary from "./components/common/ErrorClass.tsx";
+import { HelmetProvider } from "react-helmet-async";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,9 +19,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary>
-        <App />
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </ErrorBoundary>
     </QueryClientProvider>
-    ,
   </BrowserRouter>
 );
