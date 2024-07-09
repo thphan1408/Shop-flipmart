@@ -1,4 +1,5 @@
-import useRouteElement from './routes/useRouteElement'
+import useRouteElement from './routes'
+import './locales/i18n'
 
 function App() {
   const routes = useRouteElement()
