@@ -1,23 +1,27 @@
-import MainLayout from "../layout/MainLayout";
-import Home from "../pages/Home";
-import NotFound from "../pages/notFound";
-import ServerInternalPage from "../pages/serverInternalPage";
+import MainLayout from '../layout/MainLayout'
+import Home from '../pages/Home'
+import NotFound from '../pages/notFound'
+import ServerInternalPage from '../pages/serverInternalPage'
 
 const mainRoutes = [
   {
-    path: "/",
+    path: '/',
     element: <MainLayout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Home />,
       },
+      // {
+      //   path: '/about',
+      //   element: <About />,
+      // },
     ],
   },
   {
-    path: "*",
+    path: '*',
     errorElement: <ServerInternalPage />,
     element: <NotFound />,
   },
-];
-export default mainRoutes;
+]
+export default mainRoutes

@@ -7,7 +7,7 @@ const Header: React.FC<Props> = () => {
   return (
     <header className="bg-[#157ed2]">
       {/* ============================================== TOP MENU ============================================== */}
-      <div className="p-0 text-[12px] animate-dropdown">
+      <div className="p-0 text-[12px] animate-dropdown ">
         <div className="px-[15px] mx-auto">
           <div className="text-center">
             <div className="float-right px-0 py-[6px]">
@@ -279,7 +279,7 @@ const Header: React.FC<Props> = () => {
                         <div className="col-xs-4">
                           <div className="image">
                             <a href="detail.html">
-                              <img src="assets\images\cart.jpg" alt />
+                              <img src="assets\images\cart.jpg" alt="" />
                             </a>
                           </div>
                         </div>
