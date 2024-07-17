@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from '../../components'
+import { Footer, Header } from '../../components'
 import { Outlet } from 'react-router-dom'
 
 const MainLayout: React.FC = () => {
@@ -9,6 +9,7 @@ const MainLayout: React.FC = () => {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }
