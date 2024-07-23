@@ -10,7 +10,7 @@ interface CartProps {
   image: string
   tag: string
   className?: string
-  price: number
+  price: string
   priceDiscount?: number
 }
 
@@ -26,11 +26,11 @@ const Cart: React.FC<CartProps> = ({
   priceDiscount,
 }) => {
   let tagClass =
-    tag === 'new'
+    tag.toLowerCase() === 'new'
       ? 'bg-[#46aad7]'
-      : tag === 'hot'
+      : tag.toLowerCase() === 'hot'
       ? 'bg-[#ff7878]'
-      : tag === 'sale'
+      : tag.toLowerCase() === 'sale'
       ? 'bg-[#fdd922] text-[#333]'
       : 'bg-none'
 
@@ -46,13 +46,13 @@ const Cart: React.FC<CartProps> = ({
             </div>
             {/* /.image */}
             <div className={`tag ${tagClass}`}>
-              <span>{tag}</span>
+              <span>{tag.toUpperCase()}</span>
             </div>
           </div>
           {/* /.product-image */}
           <div className="product-info text-left">
             <h3 className="name">
-              <a href="detail.html">{name}</a>
+              <Link to={path}>{name}</Link>
             </h3>
             <div className="rating rateit-small" />
             <div className="description" />
