@@ -1,7 +1,6 @@
 import MainLayout from '../layout/MainLayout'
-import Home from '../pages/Home'
-import NotFound from '../pages/notFound'
-import ServerInternalPage from '../pages/serverInternalPage'
+import { SignIn, NotFound, ServerInternalPage, Home } from '../pages'
+import { PATHS } from '../utils/paths'
 
 const mainRoutes = [
   {
@@ -9,13 +8,13 @@ const mainRoutes = [
     element: <MainLayout />,
     children: [
       {
-        path: '/',
+        path: PATHS.HOME,
         element: <Home />,
       },
-      // {
-      //   path: '/about',
-      //   element: <About />,
-      // },
+      {
+        path: PATHS.SIGNIN,
+        element: <SignIn />,
+      },
     ],
   },
   {

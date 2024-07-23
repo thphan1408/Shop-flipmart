@@ -1,95 +1,92 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { images } from '../../utils/images'
+import { Link } from 'react-router-dom'
+import { PATHS } from '../../utils/paths'
+import { ConvertLanguages, CurrencyItems, NavLinkItems } from '../../constants'
 
 interface Props {}
 
 const Header: React.FC<Props> = () => {
+  const { t } = useTranslation()
+
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('English')
+  const [selectedCurrency, setSelectedCurrency] = useState<string>('USD')
+
+  const handleSeclectedLanguage = (title: string) => {
+    setSelectedLanguage(title)
+    setSelectedCurrency(title)
+  }
+
+  const handleSelectedCurrency = (title: string) => {
+    setSelectedCurrency(title)
+  }
+
   return (
     <header className="header-style-1">
       {/* ============================================== TOP MENU ============================================== */}
       <div className="top-bar animate-dropdown">
-        <div className="container">
+        <div className="Container">
           <div className="header-top-inner">
             <div className="cnt-account">
               <ul className="list-unstyled">
-                <li>
-                  <a href="#">
-                    <i className="icon fa fa-user" />
-                    My Account
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa fa-heart" />
-                    Wishlist
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa fa-shopping-cart" />
-                    My Cart
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa fa-check" />
-                    Checkout
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa fa-lock" />
-                    Login
-                  </a>
-                </li>
+                {NavLinkItems.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <Link to={item.path}>
+                        <i className={item.icon} />
+                        {item.title}
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
             {/* /.cnt-account */}
             <div className="cnt-block">
               <ul className="list-unstyled list-inline">
                 <li className="dropdown dropdown-small">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="dropdown-toggle"
                     data-hover="dropdown"
                     data-toggle="dropdown"
                   >
-                    <span className="value">USD </span>
+                    <span className="value">{selectedCurrency} </span>
                     <b className="caret" />
-                  </a>
+                  </Link>
                   <ul className="dropdown-menu">
-                    <li>
-                      <a href="#">USD</a>
-                    </li>
-                    <li>
-                      <a href="#">INR</a>
-                    </li>
-                    <li>
-                      <a href="#">GBP</a>
-                    </li>
+                    {CurrencyItems.map((item) => (
+                      <li
+                        key={item.id}
+                        onClick={() => handleSelectedCurrency(item.title)}
+                      >
+                        <Link to="#">{item.title}</Link>
+                      </li>
+                    ))}
                   </ul>
                 </li>
                 <li className="dropdown dropdown-small">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="dropdown-toggle"
                     data-hover="dropdown"
                     data-toggle="dropdown"
                   >
-                    <span className="value">English </span>
+                    <span className="value">{selectedLanguage}</span>
                     <b className="caret" />
-                  </a>
+                  </Link>
                   <ul className="dropdown-menu">
-                    <li>
-                      <a href="#">English</a>
-                    </li>
-                    <li>
-                      <a href="#">French</a>
-                    </li>
-                    <li>
-                      <a href="#">German</a>
-                    </li>
+                    {ConvertLanguages.map((item) => {
+                      return (
+                        <li
+                          key={item.id}
+                          onClick={() => handleSeclectedLanguage(item.title)}
+                        >
+                          <Link to={item.path}>{item.title}</Link>
+                        </li>
+                      )
+                    })}
                   </ul>
                 </li>
               </ul>
@@ -105,14 +102,14 @@ const Header: React.FC<Props> = () => {
       {/* /.header-top */}
       {/* ============================================== TOP MENU : END ============================================== */}
       <div className="main-header">
-        <div className="container">
+        <div className="Container">
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
               {/* ============================================================= LOGO ============================================================= */}
               <div className="logo">
-                <a href="home.html">
+                <Link to={PATHS.HOME}>
                   <img src={images.logo} alt="logo" />
-                </a>
+                </Link>
               </div>
               {/* /.logo */}
               {/* ============================================================= LOGO : END ============================================================= */}
@@ -126,50 +123,50 @@ const Header: React.FC<Props> = () => {
                   <div className="control-group">
                     <ul className="categories-filter animate-dropdown">
                       <li className="dropdown">
-                        <a
+                        <Link
                           className="dropdown-toggle"
                           data-toggle="dropdown"
-                          href="category.html"
+                          to="category.html"
                         >
                           Categories <b className="caret" />
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu" role="menu">
                           <li className="menu-header">Computer</li>
                           <li role="presentation">
-                            <a
+                            <Link
                               role="menuitem"
                               tabIndex={-1}
-                              href="category.html"
+                              to="category.html"
                             >
                               - Clothing
-                            </a>
+                            </Link>
                           </li>
                           <li role="presentation">
-                            <a
+                            <Link
                               role="menuitem"
                               tabIndex={-1}
-                              href="category.html"
+                              to="category.html"
                             >
                               - Electronics
-                            </a>
+                            </Link>
                           </li>
                           <li role="presentation">
-                            <a
+                            <Link
                               role="menuitem"
                               tabIndex={-1}
-                              href="category.html"
+                              to="category.html"
                             >
                               - Shoes
-                            </a>
+                            </Link>
                           </li>
                           <li role="presentation">
-                            <a
+                            <Link
                               role="menuitem"
                               tabIndex={-1}
-                              href="category.html"
+                              to="category.html"
                             >
                               - Watches
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </li>
@@ -178,7 +175,7 @@ const Header: React.FC<Props> = () => {
                       className="search-field"
                       placeholder="Search here..."
                     />
-                    <a className="search-button" href="#" />
+                    <Link className="search-button" to="#" />
                   </div>
                 </form>
               </div>
@@ -189,8 +186,8 @@ const Header: React.FC<Props> = () => {
             <div className="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
               {/* ============================================================= SHOPPING CART DROPDOWN ============================================================= */}
               <div className="dropdown dropdown-cart">
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="dropdown-toggle lnk-cart"
                   data-toggle="dropdown"
                 >
@@ -209,28 +206,30 @@ const Header: React.FC<Props> = () => {
                       </span>
                     </div>
                   </div>
-                </a>
+                </Link>
                 <ul className="dropdown-menu">
                   <li>
                     <div className="cart-item product-summary">
                       <div className="row">
                         <div className="col-xs-4">
                           <div className="image">
-                            <a href="detail.html">
+                            <Link to="detail.html">
                               <img src="assets\images\cart.jpg" alt="" />
-                            </a>
+                            </Link>
                           </div>
                         </div>
                         <div className="col-xs-7">
                           <h3 className="name">
-                            <a href="index.php?page-detail">Simple Product</a>
+                            <Link to="index.php?page-detail">
+                              Simple Product
+                            </Link>
                           </h3>
                           <div className="price">$600.00</div>
                         </div>
                         <div className="col-xs-1 action">
-                          <a href="#">
+                          <Link to="#">
                             <i className="fa fa-trash" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -243,12 +242,12 @@ const Header: React.FC<Props> = () => {
                         <span className="price">$600.00</span>
                       </div>
                       <div className="clearfix" />
-                      <a
-                        href="checkout.html"
+                      <Link
+                        to="checkout.html"
                         className="btn btn-upper btn-primary btn-block m-t-20"
                       >
                         Checkout
-                      </a>
+                      </Link>
                     </div>
                     {/* /.cart-total*/}
                   </li>
