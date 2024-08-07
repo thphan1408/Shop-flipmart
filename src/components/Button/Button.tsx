@@ -5,6 +5,7 @@ interface ButtonProps {
   onClick: () => void
   className?: string
   children?: React.ReactNode
+  dataToggle?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
