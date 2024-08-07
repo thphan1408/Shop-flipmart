@@ -4,7 +4,7 @@ import { PATHS } from '../utils/paths'
 
 const mainRoutes = [
   {
-    path: '/',
+    path: PATHS.ROOT.replace('/:lng', ''),
     element: <MainLayout />,
     children: [
       {
@@ -18,7 +18,7 @@ const mainRoutes = [
     ],
   },
   {
-    path: '*',
+    path: '/:lng/*',
     errorElement: <ServerInternalPage />,
     element: <NotFound />,
   },

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
+import { PATHS } from './paths'
 
 interface HelmetConfig {
   path: string
@@ -13,6 +14,7 @@ const helmetConfig: HelmetConfig[] = [
   { path: '/sign-up', title: 'Sign Up - Flipmart' },
   { path: '/wishlist', title: 'Wishlist - Flipmart' },
   { path: '/cart', title: 'Cart - Flipmart' },
+  { path: PATHS.SIGNIN, title: 'Login - Flipmart' },
 ]
 
 export const PageHelmet: React.FC = () => {

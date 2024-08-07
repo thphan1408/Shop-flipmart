@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import { PATHS } from '../../utils/paths'
 
 interface BreadcumbProps {
   basePathName: string
@@ -13,30 +14,43 @@ const Breadcumb: React.FC<BreadcumbProps> = ({
   className,
 }) => {
   const location = useLocation()
-  const pathSegments = location.pathname.split('/').filter((segment) => segment)
+  const pathnames = location.pathname.split('/').filter((x) => x)
 
-  const breadcrumbItems = pathSegments.map((segment, index) => {
-    const path = `/${pathSegments.slice(0, index + 1).join('/')}`
-    const isLast = index === pathSegments.length - 1
-    return (
-      <li key={index} className={isLast ? 'active' : ''}>
-        {isLast ? <span>{segment}</span> : <Link to={path}>{segment}</Link>}
-      </li>
-    )
-  })
+  if (pathnames.length === 0) {
+    return null
+  }
+
   return (
-    <div className={`breadcrumb" ${className || ''}`}>
+    /* /.breadcrumb */
+    <div className="breadcrumb">
       <div className="Container">
         <div className="breadcrumb-inner">
           <ul className="list-inline list-unstyled">
             <li>
-              <Link to={basePath} />
-              {basePathName}
+              <Link to={basePath}>{basePathName}</Link>
             </li>
-            {breadcrumbItems}
+            {pathnames.map((value, index) => {
+              const to = `/${pathnames.slice(0, index + 1).join('/')}`
+              const isLast = index === pathnames.length - 1
+              return (
+                <li key={to} className={isLast ? 'active' : ''}>
+                  {isLast ? (
+                    <span>
+                      {value.charAt(0).toUpperCase() + value.slice(1)}
+                    </span>
+                  ) : (
+                    <Link to={to}>
+                      {value.charAt(0).toUpperCase() + value.slice(1)}
+                    </Link>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
+        {/* /.breadcrumb-inner */}
       </div>
+      {/* /.container */}
     </div>
   )
 }

@@ -1,10 +1,10 @@
 // i18n.ts
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
 
 // Import translations
-import translationEN from "./en/translation.json";
-import translationVN from "./vn/translation.json";
+import translationEN from './en/translation.json'
+import translationVN from './vn/translation.json'
 
 // Configure i18next and react-i18next
 i18n
@@ -14,11 +14,11 @@ i18n
       en: { translation: translationEN },
       vn: { translation: translationVN },
     },
-    lng: "en", 
-    fallbackLng: "en", 
+    lng: 'en',
+    fallbackLng: 'en',
     interpolation: {
-      escapeValue: false, 
+      escapeValue: false,
     },
-  });
+  })
 
-export default i18n;
+export default i18n

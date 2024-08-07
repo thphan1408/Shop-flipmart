@@ -1,14 +1,15 @@
 export const PATHS = {
+  ROOT: '/',
   HOME: '/',
-  ABOUT: '/about',
-  CONTACT: '/contact',
-  NOT_FOUND: '/not-found',
-  SIGN_UP: '/sign-up',
-  WISHTLIST: '/wishlist',
-  CART: '/cart',
-  SIGNIN: '/sign-in',
-  MY_ACCOUNT: '/my-account',
-  CHECKOUT: '/checkout',
+  ABOUT: '/About',
+  CONTACT: '/Contact',
+  NOT_FOUND: '/Not-found',
+  SIGN_UP: '/Sign-up',
+  WISHTLIST: '/Wishlist',
+  CART: '/Cart',
+  SIGNIN: '/Login',
+  MY_ACCOUNT: '/My-account',
+  CHECKOUT: '/Checkout',
 }
 
 export type PATH = (typeof PATHS)[keyof typeof PATHS]

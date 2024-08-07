@@ -1,3 +1,5 @@
+import { onlineManager } from "@tanstack/react-query"
+
 // Banner images
 const bannerSide = '/src/assets/images/banners/banner-side.png'
 const catBanner = '/src/assets/images/banners/cat-banner-1.jpg'
@@ -85,6 +87,8 @@ export const images = {
   logo,
 } as const 
 
+// Xác định kiểu dữ liệu của images
+export type ImageList = (typeof images)[keyof typeof images] // bugs
 
 
  

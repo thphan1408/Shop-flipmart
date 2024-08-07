@@ -6,9 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 import ErrorBoundary from './components/common/ErrorClass.tsx'
 import { HelmetProvider } from 'react-helmet-async'
 
-// import file js from public
-
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

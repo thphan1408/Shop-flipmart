@@ -3,23 +3,24 @@ import { useTranslation } from 'react-i18next'
 import { images } from '../../utils/images'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../../utils/paths'
-import { ConvertLanguages, CurrencyItems, NavLinkItems } from '../../constants'
+import { CurrencyAndLanguageItems, NavLinkItems } from '../../constants'
+import Search from '../Search/Search'
 
 interface Props {}
 
 const Header: React.FC<Props> = () => {
-  const { t } = useTranslation()
+  const { i18n } = useTranslation()
 
   const [selectedLanguage, setSelectedLanguage] = useState<string>('English')
   const [selectedCurrency, setSelectedCurrency] = useState<string>('USD')
 
-  const handleSeclectedLanguage = (title: string) => {
-    setSelectedLanguage(title)
-    setSelectedCurrency(title)
+  const handleSelectedLanguage = (lang: string) => {
+    i18n.changeLanguage(lang)
+    setSelectedLanguage(lang)
   }
 
-  const handleSelectedCurrency = (title: string) => {
-    setSelectedCurrency(title)
+  const handleSelectedCurrency = (currency: string) => {
+    setSelectedCurrency(currency)
   }
 
   return (
@@ -42,53 +43,53 @@ const Header: React.FC<Props> = () => {
                 })}
               </ul>
             </div>
-            {/* /.cnt-account */}
             <div className="cnt-block">
               <ul className="list-unstyled list-inline">
-                <li className="dropdown dropdown-small">
-                  <Link
-                    to="#"
-                    className="dropdown-toggle"
-                    data-hover="dropdown"
-                    data-toggle="dropdown"
-                  >
-                    <span className="value">{selectedCurrency} </span>
-                    <b className="caret" />
-                  </Link>
-                  <ul className="dropdown-menu">
-                    {CurrencyItems.map((item) => (
-                      <li
-                        key={item.id}
-                        onClick={() => handleSelectedCurrency(item.title)}
-                      >
-                        <Link to="#">{item.title}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="dropdown dropdown-small">
-                  <Link
-                    to="#"
-                    className="dropdown-toggle"
-                    data-hover="dropdown"
-                    data-toggle="dropdown"
-                  >
-                    <span className="value">{selectedLanguage}</span>
-                    <b className="caret" />
-                  </Link>
-                  <ul className="dropdown-menu">
-                    {ConvertLanguages.map((item) => {
-                      return (
-                        <li
-                          key={item.id}
-                          onClick={() => handleSeclectedLanguage(item.title)}
+                {Object.entries(CurrencyAndLanguageItems).map(
+                  ([category, { items }], index) => {
+                    return (
+                      <li className="dropdown dropdown-small" key={index}>
+                        <a
+                          href="#"
+                          className="dropdown-toggle"
+                          data-hover="dropdown"
+                          data-toggle="dropdown"
                         >
-                          <Link to={item.path}>{item.title}</Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </li>
+                          <span className="value">
+                            {category === 'Currencies'
+                              ? selectedCurrency
+                              : selectedLanguage}
+                          </span>
+                          <b className="caret" />
+                        </a>
+                        <ul className="dropdown-menu">
+                          {items.map(
+                            (item: {
+                              id: string
+                              path: string
+                              title: string
+                            }) => {
+                              return (
+                                <li key={item.id}>
+                                  <Link
+                                    to={item.path}
+                                    onClick={() =>
+                                      category === 'Languages'
+                                        ? handleSelectedLanguage(item.title)
+                                        : handleSelectedCurrency(item.title)
+                                    }
+                                  >
+                                    {item.title}
+                                  </Link>
+                                </li>
+                              )
+                            },
+                          )}
+                        </ul>
+                      </li>
+                    )
+                  },
+                )}
               </ul>
               {/* /.list-unstyled */}
             </div>
@@ -107,7 +108,7 @@ const Header: React.FC<Props> = () => {
             <div className="col-xs-12 col-sm-12 col-md-3 logo-holder">
               {/* ============================================================= LOGO ============================================================= */}
               <div className="logo">
-                <Link to={PATHS.HOME}>
+                <Link to={PATHS.HOME.replace('/:lng', i18n.language)}>
                   <img src={images.logo} alt="logo" />
                 </Link>
               </div>
@@ -118,67 +119,7 @@ const Header: React.FC<Props> = () => {
             <div className="col-xs-12 col-sm-12 col-md-7 top-search-holder">
               {/* /.contact-row */}
               {/* ============================================================= SEARCH AREA ============================================================= */}
-              <div className="search-area">
-                <form>
-                  <div className="control-group">
-                    <ul className="categories-filter animate-dropdown">
-                      <li className="dropdown">
-                        <Link
-                          className="dropdown-toggle"
-                          data-toggle="dropdown"
-                          to="category.html"
-                        >
-                          Categories <b className="caret" />
-                        </Link>
-                        <ul className="dropdown-menu" role="menu">
-                          <li className="menu-header">Computer</li>
-                          <li role="presentation">
-                            <Link
-                              role="menuitem"
-                              tabIndex={-1}
-                              to="category.html"
-                            >
-                              - Clothing
-                            </Link>
-                          </li>
-                          <li role="presentation">
-                            <Link
-                              role="menuitem"
-                              tabIndex={-1}
-                              to="category.html"
-                            >
-                              - Electronics
-                            </Link>
-                          </li>
-                          <li role="presentation">
-                            <Link
-                              role="menuitem"
-                              tabIndex={-1}
-                              to="category.html"
-                            >
-                              - Shoes
-                            </Link>
-                          </li>
-                          <li role="presentation">
-                            <Link
-                              role="menuitem"
-                              tabIndex={-1}
-                              to="category.html"
-                            >
-                              - Watches
-                            </Link>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                    <input
-                      className="search-field"
-                      placeholder="Search here..."
-                    />
-                    <Link className="search-button" to="#" />
-                  </div>
-                </form>
-              </div>
+              <Search />
               {/* /.search-area */}
               {/* ============================================================= SEARCH AREA : END ============================================================= */}
             </div>
@@ -214,7 +155,7 @@ const Header: React.FC<Props> = () => {
                         <div className="col-xs-4">
                           <div className="image">
                             <Link to="detail.html">
-                              <img src="assets\images\cart.jpg" alt="" />
+                              <img src={images.product1} alt="" />
                             </Link>
                           </div>
                         </div>
