@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
-import { PATHS } from '../../utils/paths'
+import { Link, useLocation } from 'react-router-dom'
 
 interface BreadcumbProps {
   basePathName: string
@@ -8,11 +7,7 @@ interface BreadcumbProps {
   className?: string
 }
 
-const Breadcumb: React.FC<BreadcumbProps> = ({
-  basePathName,
-  basePath,
-  className,
-}) => {
+const Breadcumb: React.FC<BreadcumbProps> = ({ basePathName, basePath }) => {
   const location = useLocation()
   const pathnames = location.pathname.split('/').filter((x) => x)
 

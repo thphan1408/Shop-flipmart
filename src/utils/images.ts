@@ -1,5 +1,3 @@
-import { onlineManager } from "@tanstack/react-query"
-
 // Banner images
 const bannerSide = '/src/assets/images/banners/banner-side.png'
 const catBanner = '/src/assets/images/banners/cat-banner-1.jpg'
@@ -40,11 +38,15 @@ const product26 = '/src/assets/images/products/p26.jpg'
 const product27 = '/src/assets/images/products/p27.jpg'
 const product28 = '/src/assets/images/products/p28.jpg'
 const product29 = '/src/assets/images/products/p29.jpg'
-const product30  = '/src/assets/images/products/p30.jpg'
+const product30 = '/src/assets/images/products/p30.jpg'
 // end product images
 
 // logo
 const logo = '/src/assets/images/logo.png'
+
+// slider
+const slider1 = '/src/assets/images/sliders/01.jpg'
+const slider2 = '/src/assets/images/sliders/02.jpg'
 
 export const images = {
   bannerSide,
@@ -85,10 +87,9 @@ export const images = {
   product29,
   product30,
   logo,
-} as const 
+  slider1,
+  slider2,
+} as const
 
 // Xác định kiểu dữ liệu của images
 export type ImageList = (typeof images)[keyof typeof images] // bugs
-
-
- 

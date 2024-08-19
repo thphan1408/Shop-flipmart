@@ -7,7 +7,7 @@ export default {
         primary: '#108bea',
       },
       borderWidth: {
-        '1': '1px',
+        1: '1px',
       },
       borderColor: {
         transparent: 'transparent',

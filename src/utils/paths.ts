@@ -10,6 +10,7 @@ export const PATHS = {
   SIGNIN: '/Login',
   MY_ACCOUNT: '/My-account',
   CHECKOUT: '/Checkout',
+  PRODUCT_DETAIL: '/Product-detail',
 }
 
 export type PATH = (typeof PATHS)[keyof typeof PATHS]
