@@ -1,4 +1,4 @@
-import { TParam } from "../type/productType";
+import { TParam } from "../types/productType";
 import axios_auth from "./httpClient";
 
 const getAllProduct = (params: TParam) => {

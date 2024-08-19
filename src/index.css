@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+p {
+  @apply mb-2.5; /* mb-2.5 corresponds to 10px of margin-bottom */
+}

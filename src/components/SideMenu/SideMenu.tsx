@@ -28,30 +28,26 @@ const SideMenu: React.FC<SideMenuProps> = () => {
                     {items && items.length > 0 && (
                       <ul className="dropdown-menu mega-menu">
                         <li className="yamm-content">
-                          <li className="yamm-content">
-                            <div className="row">
-                              {items.map((item) => {
-                                return (
-                                  <div
-                                    className="col-sm-12 col-md-3"
-                                    key={item.id}
-                                  >
-                                    <Link to={item.url}>{item.name}</Link>
-                                    {/* <ul className="links list-unstyled">
+                          <div className="row">
+                            {items.map((item) => {
+                              return (
+                                <div
+                                  className="col-sm-12 col-md-3"
+                                  key={item.id}
+                                >
+                                  <Link to={item.url}>{item.name}</Link>
+                                  {/* <ul className="links list-unstyled">
                                         <li >
                                         </li>
                                       </ul> */}
-                                  </div>
-                                )
-                              })}
-                              {/* /.col */}
-                            </div>
-                            {/* /.row */}
-                          </li>
+                                </div>
+                              )
+                            })}
+                            {/* /.col */}
+                          </div>
+                          {/* /.row */}
                           {/* /.row */}
                         </li>
-
-                        {/* /.yamm-content */}
                       </ul>
                     )}
 
